@@ -7,9 +7,9 @@ ALLOWED_IP="0.0.0.0/0"    # Ganti jika ingin membatasi IP tertentu
 apt update && apt install dante-server squid apache2-utils ufw -y
 
 # ==== Buat user untuk SOCKS5 dan HTTP ====
-id proxyuser &>/dev/null || useradd -M proxyuser
-echo "proxyuser:rahasia123" | chpasswd
-htpasswd -bc /etc/squid/passwd squiduser rahasia123
+id proxyuser &>/dev/null || useradd -M danis
+echo "danis:rahasia123" | chpasswd
+htpasswd -bc /etc/squid/passwd danis rahasia123
 
 # ==== Konfigurasi Danted ====
 cat > /etc/danted.conf << EOF
@@ -59,8 +59,8 @@ ufw --force enable
 
 echo "==================================="
 echo "✅ SOCKS5 Proxy (Dante) aktif: port 1080"
-echo "   Login: proxyuser / rahasia123"
+echo "   Login: danis / rahasia123"
 echo "✅ HTTP Proxy (Squid) aktif: port 3128"
-echo "   Login: squiduser / rahasia123"
+echo "   Login: danis / rahasia123"
 echo "📌 Diizinkan dari IP: ${ALLOWED_IP}"
 echo "==================================="
